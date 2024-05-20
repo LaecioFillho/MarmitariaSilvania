@@ -1,9 +1,5 @@
 export default function CartItens(){
 
-    const openCart = () => {
-        
-    }
-
     return(
         <>
             <section 
