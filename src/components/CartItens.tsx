@@ -4,9 +4,7 @@ import Menu from "./Menu";
 
 export default function CartItens(){
 
-    let cartItens = [{}]
     const open = useRef<HTMLDivElement>(null)
-    const cartItemsContainer = useRef<HTMLDivElement>(null)
 
     const openCartItens = () => {
         if(open.current){
@@ -21,54 +19,51 @@ export default function CartItens(){
     }
 
     
-    function addItenToCart(productName: string, productPrice: Number) {
+    function addItenToCart(productName: string, productPrice: number) {
 
-        /*
-        if(cartItens.find( (item) => {item.productName === productName})){
-         // Se o item já existe, aumenta apenas a quantidade + 1 
-            cartItens.quantity += 1
-        }else{
         
-        }*/
-
-        cartItens.push({
-            productName,
-            productPrice,
-            quantity: 1,
-        })
+        if(cartItens.find( (item) => {item.productName === productName})){
+             
+        }else{
+            cartItens.push({
+                productName,
+                productPrice,
+                quantity: 1,
+            })
+        }
 
         updateCartItens()
+        console.log(cartItens)
     }
 
+    let cartItens = [
+        {
+            productName: "Test",
+            productPrice: 0,
+            quantity: 0,
+        },
+    ]
+    
     
     function updateCartItens(){
-
-            /*
-            cartItens.forEach(item => {
-                if(cartItemsContainer.current){
-                cartItemsContainer.current.innerHTML = `
-                <div class="flex items-center justify-between">
+      return(
+        cartItens.forEach(item => {
+            <>
+                <div className="flex items-center justify-between">
                     <div>
-                        <p class="font-medium">Test</p>
-                        <p>Qtd: 2</p>
-                        <p class="font-medium mt-2">R$ 2,00</p>
+                        <p className="font-medium">{item.productName}</p>
+                        <p>Qtd: ${item.quantity}</p>
+                        <p className="font-medium mt-2">R$ {item.productPrice.toFixed(2)}</p>
                     </div>
-                    <button 
-                        class="remove-from-cart-btn" 
-                        data-name="Teste">
-                        Remover
-                    </button>
-                </div>`
-                }
-            })
-        }*/
-        //let total = 0;
-      
-        //total += item.productPrice * item.quantity;
-      
-        //cartCounter.innerHTML = cart.length;
-      
-      }
+                        <button className="remove-from-cart-btn" 
+                                data-name="{item.productName}">
+                            Remover
+                        </button>
+                </div>
+            </>
+        })
+      )
+    }
 
 
 
@@ -84,9 +79,8 @@ export default function CartItens(){
 
                     <h1 className="text-center text-2xl">Meu Pedido</h1>
 
-                    <div 
-                        className="flex justify-between mb-2 flex-col max-h-[400px] overflow-auto"
-                        rel="cartItemsContainer">
+                    <div className="flex justify-between mb-2 flex-col max-h-[400px] overflow-auto">
+                       
                     </div>
 
                     <p>Total: R$ <span>0</span>,00</p>

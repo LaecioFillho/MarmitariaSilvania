@@ -1,7 +1,7 @@
 import { MdAddShoppingCart } from "react-icons/md";
 
 interface addItenToCartProps {
-    addItenToCart: (productName: string, productPrice: Number) => void
+    addItenToCart: (productName: string, productPrice: number) => void
 }
 
 export default function Menu({ addItenToCart }: addItenToCartProps){
