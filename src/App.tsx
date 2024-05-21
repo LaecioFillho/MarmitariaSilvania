@@ -3,13 +3,18 @@ import CartItens from "./components/CartItens"
 import Header from "./components/Header"
 import Menu from "./components/Menu"
 
+ 
 function App() {
+
+  const openCartItens = () => {
+    return
+  }
 
   return (
     <>
       <Header />
       <Menu />
-      <Cart />
+      <Cart openCartItens={openCartItens}/>
       <CartItens />
     </>
   )

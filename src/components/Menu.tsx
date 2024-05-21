@@ -1,6 +1,19 @@
 import { MdAddShoppingCart } from "react-icons/md";
 
-export default function Menu(){
+interface addItenToCartProps {
+    addItenToCart: (productName: string, productPrice: Number) => void
+}
+
+export default function Menu({ addItenToCart }: addItenToCartProps){
+
+    const addItensCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+        let button = event.currentTarget
+
+        let productName = String(button.getAttribute("data-name"))
+        let productPrice = Number(button.getAttribute("data-price"))
+
+        addItenToCart(productName, productPrice)
+    }
 
     const products = [
         {
@@ -41,9 +54,9 @@ export default function Menu(){
                     <h1 className="text-5xl text-center font-dancing font-bold">Nosso Cardapio</h1>
                 </aside>
 
-                    <section className="flex flex-col md:flex-row gap-2 p-4">
+                    <section className="grid grid-cols-1 md:grid-cols-2 gap-2 px-0 md:px-10 py-4 md:p-4">
                             {products.map((product, index) =>(
-                            <div key={`product-${index}`} className=" flex m-2 p-2 w-full bg-yellow-500 rounded-lg">
+                            <div key={`product-${index}`} className="flex mt-2 md:mx-4 p-2 w-{350px} bg-yellow-500 rounded-lg">
                                 <img src={product.icon} alt="" className="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 mx-auto" />
                                 
                                 <div className="px-2 text-gray-100">
@@ -54,8 +67,9 @@ export default function Menu(){
                                         <p className="font-bold md:text-xl border-b-2">R$ {product.price},00</p>
                                         <button 
                                             className="flex items-center gap-1 bg-green-700 px-2 py-1 rounded"
-                                            data-name="Prato-Feito"
-                                            data-price="13.00">
+                                            data-name={product.title}
+                                            data-price={product.price}
+                                            onClick={addItensCart}>
                                             <MdAddShoppingCart className="h-5 w-5" />
                                             Pedir
                                         </button>
@@ -68,9 +82,9 @@ export default function Menu(){
                         <h1 className="text-5xl text-center font-dancing font-bold">Bebidas</h1>
                     </aside>
 
-                    <section className="flex flex-col md:flex-row gap-2 p-4 mb-8">
+                    <section className="grid grid-cols-1 md:grid-cols-2 gap-2 px-0 md:px-10 py-4 md:p-4 mb-16">
                             {drinks.map((drink, index) =>(
-                            <div key={`product-${index}`} className=" flex justify-start m-2 p-2 w-full bg-yellow-500 rounded-lg">
+                            <div key={`product-${index}`} className=" flex justify-start mt-2 md:mx-4 p-2 w-{350px} bg-yellow-500 rounded-lg">
                                 <img src={drink.icon} alt="" className="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 mx-auto" />
                                 
                                 <div className="px-2 text-gray-100">
@@ -81,8 +95,9 @@ export default function Menu(){
                                         <p className="font-bold md:text-xl border-b-2">R$ {drink.price},00</p>
                                         <button 
                                             className="flex items-center gap-1 bg-green-700 px-2 py-1 rounded"
-                                            data-name="Prato-Feito"
-                                            data-price="13.00">
+                                            data-name={drink.title}
+                                            data-price={drink.price}
+                                            onClick={addItensCart}>
                                             <MdAddShoppingCart className="h-5 w-5" />
                                             Pedir
                                         </button>
