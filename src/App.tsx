@@ -9,11 +9,14 @@ function App() {
   const openCartItens = () => {
     return
   }
+  const addItenToCart = () => {
+    return
+  }
 
   return (
     <>
       <Header />
-      <Menu />
+      <Menu addItenToCart={addItenToCart}/>
       <Cart openCartItens={openCartItens}/>
       <CartItens />
     </>
